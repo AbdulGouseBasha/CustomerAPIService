@@ -1,0 +1,27 @@
+# Use an official Ubuntu LTS as the base image
+FROM ubuntu:22.04
+
+# Set environment variables if needed (e.g., for locale)
+ENV DEBIAN_FRONTEND=noninteractive
+
+# Update package list and install necessary dependencies for a typical REST service
+RUN apt-get update && apt-get install -y \
+    libpq5 \
+    libsqlite3-0 \
+    libcurl4 \
+    --no-install-recommends \
+    && rm -rf /var/lib/apt/lists/*
+
+# Set the working directory inside the container
+WORKDIR /app
+
+# Copy the compiled application and any required assets
+COPY CustomerAPIService /app/
+
+# Expose the port that the application listens on
+EXPOSE 8080
+
+RUN chmod +x ./CustomerAPIService
+
+# The command to run the application when the container starts
+CMD ["./CustomerAPIService"]
