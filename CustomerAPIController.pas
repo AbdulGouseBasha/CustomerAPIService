@@ -78,7 +78,7 @@ end;
 //Sample CRUD Actions for a "Customer" entity
 procedure TMyController.GetCustomers;
 begin
-  Render('Hi Friends, welcome to Delphi Docker deployment.....');
+  Render('Hi Friends, welcome to Delphi Docker deployment and view the experience.....');
 end;
 
 procedure TMyController.GetCustomer(id: Integer);
